@@ -17,8 +17,9 @@ public class ConsumeProducerMain {
             sharedResource.consumeItem();
         });
 
-        producer.start();
+        // producer.start();
         consumer.start();
+        producer.start();
     }
     
 }
