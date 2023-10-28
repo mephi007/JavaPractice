@@ -24,7 +24,8 @@ public class ProducerConsumerProblemWithQueue {
                 }
             }
         );
-        consumer.start();
         producer.start();
+        consumer.start();
+        
     }
 }

@@ -16,14 +16,14 @@ public class SharedQueue {
         int value = 0;
         while(true){
             synchronized(this){
-                while(queue.size() == size){
+                if(queue.size() == size){
                     System.out.println("queue is full, waiting on consumer to consume");
                     wait();
                 }
                 System.out.println("adding --> " + value);
                 queue.add(value++);
                 notifyAll();
-                Thread.sleep(1000);
+                Thread.sleep(100);
             }
         }
     }
@@ -32,7 +32,7 @@ public class SharedQueue {
         // int value = -1;
         while(true){
             synchronized(this){
-                while(queue.isEmpty()){
+                if(queue.isEmpty()){
                     System.out.println("queue is empty, waiting on producer to produce");
                     wait();
                 }
@@ -40,7 +40,7 @@ public class SharedQueue {
                 int value = queue.poll();
                 System.out.println("removed --> " + value);
                 notifyAll();
-                Thread.sleep(1000);
+                Thread.sleep(500);
             }
         }
     }

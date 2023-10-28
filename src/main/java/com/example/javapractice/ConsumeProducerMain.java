@@ -17,9 +17,16 @@ public class ConsumeProducerMain {
             sharedResource.consumeItem();
         });
 
-        // producer.start();
-        consumer.start();
         producer.start();
+        try {
+            System.out.println("waiting producer to add element");
+            producer.join();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        consumer.start();
+        // producer.start();
     }
     
 }
