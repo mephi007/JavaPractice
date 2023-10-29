@@ -234,5 +234,8 @@ public class Streams {
 
         Supplier<String> supplier = () -> {return "hi Sumit";};
         System.out.println(supplier.get());
+
+        List<String> list2 = Arrays.asList();
+        System.out.println(list2.stream().findAny().orElseGet(supplier));
     }
 }
