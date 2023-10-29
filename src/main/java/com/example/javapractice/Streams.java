@@ -8,7 +8,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 
@@ -220,5 +223,16 @@ public class Streams {
         String sortedPlayers = allPlayersUsingFlatMap.stream().sorted((a,b) -> a.charAt(1) - b.charAt(1)).collect(Collectors.joining(", "));
         System.out.println("sorted player second character --> " + sortedPlayers);
 
+        Consumer<Integer> consumer = t -> System.out.println("Printing : " + t*t);
+        consumer.accept(10);
+        List<Integer> list1 = Arrays.asList(1,2,3,4,5);
+        // list1.stream().forEach(consumer);
+        list1.stream().forEach(consumer);
+
+        Predicate<Integer> predicate = (t)-> { return t%2==0;};
+        list1.stream().filter(predicate).forEach(consumer);
+
+        Supplier<String> supplier = () -> {return "hi Sumit";};
+        System.out.println(supplier.get());
     }
 }
