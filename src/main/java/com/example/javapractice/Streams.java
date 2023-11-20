@@ -143,8 +143,9 @@ public class Streams {
         int totalProduct = numbers.stream().reduce(1, (a,b) -> a*b);
         System.out.println("total product of array using reduce() --> " + totalProduct);
 
-        int max = numbers.stream().reduce(1, Integer::max);
-        System.out.println("max of the array using reduce() and method reference --> " + max);
+        // int max = numbers.stream().reduce(1, Integer::max);
+        Optional<Integer> max = numbers.stream().max((a,b) -> a-b);
+        System.out.println("max of the array using reduce() and method reference --> " + max.get());
 
         /*
          * sum of even numbers

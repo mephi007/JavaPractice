@@ -1,0 +1,59 @@
+Id	Name	    Department   ManagerId
+201	Person1	    C             250
+202	Person2	    A	          201
+203	Person3	    A	          201
+204	Person4	    A	          201
+205	Person5	    A	          201
+206	Person6	    B	          201
+
+employees having atleast 3 direct reportee
+
+select ManagerId from emp groupBy managerId having count(ManagerId)>= 3
+
+difference abstract and interface 100% 
+member variable 
+
+class Person{
+      public String name;
+      public int age;
+      public String gender;// M/F
+
+      public Person(String name, int age, String gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+      }
+    }
+
+HashMap --->
+
+
+Array of LinkedList
+
+Entry<K,V>
+
+map.put(1, "one")
+int index = hashCode(1) % n-1
+[Entry<1"one">]
+
+map.put(1, "two")
+
+map.get(2);
+
+[Entry<1, "two">]
+[]
+[]
+[Entry<2, "two">] 
+[]
+
+Linked
+
+head
+tail O(1)
+head --- node  ----= node3 --- tail
+
+insertion order and aceess order
+
+TreeHashMap -> BST sorted.
+
+
