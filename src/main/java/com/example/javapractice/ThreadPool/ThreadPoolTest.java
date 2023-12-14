@@ -10,26 +10,26 @@ import java.util.stream.IntStream;
 public class ThreadPoolTest {
     
     public static void main(String[] args) {
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(
+        try (ThreadPoolExecutor executor = new ThreadPoolExecutor(
             2, 
             4, 
-            10, 
+            10,  
             TimeUnit.MINUTES, 
             new ArrayBlockingQueue<>(2), 
             new CustomThreadFactory(), 
-            new ThreadPoolExecutor.DiscardOldestPolicy());
+            new ThreadPoolExecutor.DiscardOldestPolicy())) {
+            IntStream.range(0, 9).forEach(
+                (index) -> executor.submit(() -> {
+                    try {
+                        Thread.sleep(10000);
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
+                    System.out.printf("Task %d processed by : %s \n", index, Thread.currentThread().getName());
+            }));
 
-        IntStream.range(0, 9).forEach(
-            (index) -> executor.submit(() -> {
-                try {
-                    Thread.sleep(10000);
-                } catch (Exception e) {
-                    // TODO: handle exception
-                }
-                System.out.printf("Task %d processed by : %s \n", index, Thread.currentThread().getName());
-        }));
-
-        executor.shutdown();
+            executor.shutdown();
+        }
     }    
 }
 
